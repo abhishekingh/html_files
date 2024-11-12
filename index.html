@@ -1,47 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background setup */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Main card styling */
+    .birthday-card {
+      text-align: center;
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Happy Birthday Text */
+    .birthday-card h1 {
+      color: #ff6f61;
+      font-size: 3em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Message */
+    .birthday-card p {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    /* Button styling */
+    .play-music {
+      padding: 10px 20px;
+      background-color: #ff6f61;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .play-music:hover {
+      background-color: #e55b50;
+    }
+
+    /* Confetti animation */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #ffd700;
+      animation: fall linear infinite;
+      opacity: 0.8;
+      border-radius: 50%;
+      top: -20px;
+      left: calc(50% + 100px);
+      z-index: 0;
+    }
+
+    /* Balloon animation */
+    .balloons {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: -1;
+    }
+
+    .balloon {
+      width: 60px;
+      height: 80px;
+      background-color: #ff6f61;
+      border-radius: 50% 50% 50% 50%;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .balloon:nth-child(2) { background-color: #ffcccb; animation-delay: 0.5s; }
+    .balloon:nth-child(3) { background-color: #ffd700; animation-delay: 1s; }
+    .balloon:nth-child(4) { background-color: #9acd32; animation-delay: 1.5s; }
+
+    .balloon::before {
+      content: "";
+      width: 2px;
+      height: 30px;
+      background-color: #333;
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px); }
+      100% { transform: translateY(600px); }
+    }
+
+    /* Different confetti colors */
+    .confetti:nth-child(2) { background-color: #ff6f61; left: calc(50% - 80px); animation-duration: 3s; }
+    .confetti:nth-child(3) { background-color: #9acd32; left: calc(50% + 50px); animation-duration: 4s; }
+    .confetti:nth-child(4) { background-color: #ffcccb; left: calc(50% - 150px); animation-duration: 5s; }
+    .confetti:nth-child(5) { background-color: #ffd700; left: calc(50% + 150px); animation-duration: 3.5s; }
+
+  </style>
 </head>
 <body>
-    <form action="new.jsp">
-        <Pre>Enter name :  <input type="text"  placeholder="name" ></input></Pre>
-        <pre>Enter password: <input  type ="password" placeholder="password" ></input></pre>
-        <pre>choose your class:</pre>
-        <label for="101">
-            <input type="radio" value="class IX" name="class" id="101">class IX
-        </label>
-        <label for="102">
-            <input type="radio" value="class X" name="class" id="102">class X
-        </label>
-        <br>
-        select your subjects:
-        <br>
-        <label for="11">
-            <input type="checkbox"  value="option 1" name="option" id="11">option 1
-        </label>
-        <label for="12">
-            <input type="checkbox" value="option 2" name="option" id="12">option 2
-        </label>
-        <label for="13">
-            <input type="checkbox" value="option 3" name="option" id="13">option 3
-        </label>
-        <br>
-        <br>
-        select your city: 
-        <select name="city" id="1001">
-            <option value="delhi">delhi</option>
-            <option value="mumbai">mumbai</option>
-            <option value="bihar">bihar</option>
-            <option value="goa">goa</option>
-        </select>
-        <br><br>
-        <textarea name="feedback" placeholder=" enter feedback" rows="5" ></textarea>
-        <br>
-        <input type="submit" value="submit"></input>
-    </form>
-    
+
+  <div class="birthday-card">
+    <h1>Happy Birthday!</h1>
+    <p>Wishing you a fantastic day filled with laughter, joy, and surprises!</p>
+    <button class="play-music" onclick="playMusic()">Play Birthday Song</button>
+  </div>
+
+  <!-- Balloons -->
+  <div class="balloons">
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+  </div>
+
+  <!-- Confetti -->
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+  <div class="confetti"></div>
+
+  <!-- JavaScript for playing music -->
+  <script>
+    function playMusic() {
+      const audio = new Audio('https://www.soundjay.com/button/beep-01a.mp3'); // replace with birthday song
+      audio.play();
+    }
+  </script>
+  
 </body>
 </html>
